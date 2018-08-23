@@ -65,10 +65,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-print-serial" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/19/hello-world/" class="article-date">
-  <time datetime="2018-08-19T14:00:17.693Z" itemprop="datePublished">2018-08-19</time>
+    <a href="/2018/08/23/print-serial/" class="article-date">
+  <time datetime="2018-08-23T11:33:11.000Z" itemprop="datePublished">2018-08-23</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/19/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/08/23/print-serial/">Print Serial</a>
     </h1>
   
 
@@ -87,20 +87,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="Ubuntu下调试串口热敏打印机"><a href="#Ubuntu下调试串口热敏打印机" class="headerlink" title="Ubuntu下调试串口热敏打印机"></a>Ubuntu下调试串口热敏打印机</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
+<p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p>
+<p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p>
+<p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p>
+<p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p>
+<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/usb/ttyS0</span><br></pre></td></tr></table></figure></p>
+<p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p>
+<p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p>
+<p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p>
+<p>打开终端安装<strong>pip3</strong>,然后通过<strong>pip3</strong>安装<strong>python-escpos</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">pip3 install python-escpos</span><br></pre></td></tr></table></figure>
+<p>确认安装完成后我们就可以做一个简单的打印DEMO了<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *</span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)</span><br><span class="line">p.text(<span class="string">"Hello World\n\n\n"</span>)</span><br><span class="line">p.qr(<span class="string">"http://www.winpos.com.cn"</span>)</span><br><span class="line">p.cut( )</span><br></pre></td></tr></table></figure></p>
+<p>保存文件为<strong>printdemo.py</strong><br>执行<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 printdemo.py</span><br></pre></td></tr></table></figure></p>
+<p>此时打印机就会打出一张带二维码的小票，并切纸，测试OK。</p>
+<p>现在这个demo还有点小问题，因为不能输出中文，所以后续还需要再完善。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://54laowang.github.io/2018/08/19/hello-world/" data-id="cjl10sumn0000iwtxurphj8ek" class="article-share-link">Share</a>
+      <a data-url="http://54laowang.github.io/2018/08/23/print-serial/" data-id="cjl6igels0000gktx3ji1i1dr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,7 +147,7 @@
       <ul>
         
           <li>
-            <a href="/2018/08/19/hello-world/">Hello World</a>
+            <a href="/2018/08/23/print-serial/">Print Serial</a>
           </li>
         
       </ul>
@@ -171,7 +177,7 @@
 </nav>
     
 
-<script src="http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
