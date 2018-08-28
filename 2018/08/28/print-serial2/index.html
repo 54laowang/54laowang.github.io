@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="printer," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="老王在 Github 上的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="老王博客">
-<meta property="og:url" content="http://54laowang.github.io/index.html">
+<meta name="description" content="Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。BIG5编码：台湾地区繁体中文标准字符">
+<meta name="keywords" content="printer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Print Serial-2">
+<meta property="og:url" content="http://54laowang.github.io/2018/08/28/print-serial2/index.html">
 <meta property="og:site_name" content="老王博客">
-<meta property="og:description" content="老王在 Github 上的个人博客">
+<meta property="og:description" content="Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。BIG5编码：台湾地区繁体中文标准字符">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-28T16:10:29.149Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="老王博客">
-<meta name="twitter:description" content="老王在 Github 上的个人博客">
+<meta name="twitter:title" content="Print Serial-2">
+<meta name="twitter:description" content="Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。BIG5编码：台湾地区繁体中文标准字符">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://54laowang.github.io/"/>
+  <link rel="canonical" href="http://54laowang.github.io/2018/08/28/print-serial2/"/>
 
 
 
 
 
-  <title>老王博客</title>
+  <title>Print Serial-2 | 老王博客</title>
   
 
 
@@ -145,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,9 +220,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -251,9 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/print-serial2/" itemprop="url">Print Serial-2</a></h1>
+          <h1 class="post-title" itemprop="name headline">Print Serial-2</h1>
         
 
         <div class="post-meta">
@@ -303,15 +302,11 @@
       
 
       
-        
-          
-            <h1 id="Ubuntu下调试串口热敏打印机（二）"><a href="#Ubuntu下调试串口热敏打印机（二）" class="headerlink" title="Ubuntu下调试串口热敏打印机（二）"></a>Ubuntu下调试串口热敏打印机（二）</h1><p>上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。<br>后续又看了下相关文档和例程，发现是汉字编码问题。<br>目前常见的汉字字符集编码大致为以下几种:</p>
+        <h1 id="Ubuntu下调试串口热敏打印机（二）"><a href="#Ubuntu下调试串口热敏打印机（二）" class="headerlink" title="Ubuntu下调试串口热敏打印机（二）"></a>Ubuntu下调试串口热敏打印机（二）</h1><p>上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。<br>后续又看了下相关文档和例程，发现是汉字编码问题。<br>目前常见的汉字字符集编码大致为以下几种:</p>
 <h4 id="GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。"><a href="#GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。" class="headerlink" title="GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。"></a>GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。</h4><h4 id="BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。"><a href="#BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。" class="headerlink" title="BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。"></a>BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。</h4><h4 id="GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。"><a href="#GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。" class="headerlink" title="GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。"></a>GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。</h4><h4 id="GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。"><a href="#GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。" class="headerlink" title="GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。"></a>GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。</h4><h4 id="Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。"><a href="#Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。" class="headerlink" title="Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。"></a>Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。</h4><p>看了下例程，要想顺利打印中文，我们需要在我们的代码里声明一下打印文字的编码格式<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *  <span class="comment">#引入escpos</span></span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)  <span class="comment">#定义打印机接口</span></span><br><span class="line">p.codepage = <span class="string">"gb2312"</span> <span class="comment">#声明编码为GB2312</span></span><br><span class="line">p.text(<span class="string">"打印机测试正常\n\n\n"</span>) <span class="comment">#打印中文</span></span><br><span class="line">p.qr(<span class="string">"1234"</span>)   <span class="comment">#打印二维码</span></span><br><span class="line">p.cut()   <span class="comment"># 切纸</span></span><br></pre></td></tr></table></figure></p>
 <p>好了，目前常规的一些测试已经完成了，其它例程和函数应用可以参考<a href="https://github.com/python-escpos/python-escpos" target="_blank" rel="noopener"><strong>python-escpos</strong></a>库里的例程.</p>
 <p>还可以访问相关<a href="https://python-escpos.readthedocs.io/" target="_blank" rel="noopener">文档</a>。</p>
 
-          
-        
       
     </div>
     
@@ -326,148 +321,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://54laowang.github.io/2018/08/23/print-serial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="laowang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老王博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/23/print-serial/" itemprop="url">Print Serial</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T19:33:11+08:00">
-                2018-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/printer/" rel="tag"># printer</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ubuntu下调试串口热敏打印机（一）"><a href="#Ubuntu下调试串口热敏打印机（一）" class="headerlink" title="Ubuntu下调试串口热敏打印机（一）"></a>Ubuntu下调试串口热敏打印机（一）</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
-<p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p>
-<p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p>
-<p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p>
-<p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p>
-<p>打开终端安装<strong>pip3</strong>,然后通过<strong>pip3</strong>安装<strong>python-escpos</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">pip3 install python-escpos</span><br></pre></td></tr></table></figure>
-<p>确认安装完成后我们就可以做一个简单的打印DEMO了<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *</span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)</span><br><span class="line">p.text(<span class="string">"Hello World\n\n\n"</span>)</span><br><span class="line">p.qr(<span class="string">"http://www.winpos.com.cn"</span>)</span><br><span class="line">p.cut( )</span><br></pre></td></tr></table></figure></p>
-<p>保存文件为<strong>printdemo.py</strong><br>执行<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 printdemo.py</span><br></pre></td></tr></table></figure></p>
-<p>此时打印机就会打出一张带二维码的小票，并切纸，测试OK。</p>
-<p>现在这个demo还有点小问题，因为不能输出中文，所以后续还需要再完善。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/print-serial/" rel="next" title="Print Serial">
+                <i class="fa fa-chevron-left"></i> Print Serial
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -477,10 +360,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -488,6 +372,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -508,8 +396,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -567,6 +464,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu下调试串口热敏打印机（二）"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu下调试串口热敏打印机（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -700,6 +613,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
