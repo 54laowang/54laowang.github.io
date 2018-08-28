@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://54laowang.github.io/"/>
-  <updated>2018-08-28T15:40:02.706Z</updated>
+  <updated>2018-08-28T15:52:02.587Z</updated>
   <id>http://54laowang.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://54laowang.github.io/2018/08/28/pyserial2/"/>
     <id>http://54laowang.github.io/2018/08/28/pyserial2/</id>
     <published>2018-08-28T14:57:02.000Z</published>
-    <updated>2018-08-28T15:40:02.706Z</updated>
+    <updated>2018-08-28T15:52:02.587Z</updated>
     
     <content type="html"><![CDATA[<p>#Ubuntu下调试串口热敏打印机（二）<br>上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。<br>后续又看了下相关文档和例程，发现是汉字编码问题。<br>目前常见的汉字字符集编码大致为以下几种:</p><p>####GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。</p><p>####BIG5编码：台湾地区繁体中文标准字符集，采用双字节编码，共收录13053个中文字，1984年实施。</p><p>####GBK编码：1995年12月发布的汉字编码国家标准，是对GB2312编码的扩充，对汉字采用双字节编码。GBK字符集共收录21003个汉字，包含国家标准GB13000-1中的全部中日韩汉字，和BIG5编码中的所有汉字。</p><p>####GB18030编码：2000年3月17日发布的汉字编码国家标准，是对GBK编码的扩充，覆盖中文、日文、朝鲜语和中国少数民族文字，其中收录27484个汉字。GB18030字符集采用单字节、双字节和四字节三种方式对字符编码。兼容GBK和GB2312字符集。</p><p>####Unicode编码：国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。<br>看了下例程，要想顺利打印中文，我们需要在我们的代码里声明一下打印文字的编码格式<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *  <span class="comment">#引入escpos</span></span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)  <span class="comment">#定义打印机接口</span></span><br><span class="line">p.codepage = <span class="string">"gb2312"</span> <span class="comment">#声明编码为GB2312</span></span><br><span class="line">p.text(<span class="string">"打印机测试正常\n\n\n"</span>) <span class="comment">#打印中文</span></span><br><span class="line">p.qr(<span class="string">"1234"</span>)   <span class="comment">#打印二维码</span></span><br><span class="line">p.cut()   <span class="comment"># 切纸</span></span><br></pre></td></tr></table></figure></p><p>好了，目前常规的一些测试已经完成了，其它例程和函数应用可以参考<a href="https://github.com/python-escpos/python-escpos" target="_blank" rel="noopener"><strong>python-escpos</strong></a>库里的例程.</p><p>还可以访问相关<a href="https://python-escpos.readthedocs.io/" target="_blank" rel="noopener">文档</a>。</p>]]></content>
     
@@ -36,6 +36,8 @@
     </summary>
     
     
+      <category term="printer" scheme="http://54laowang.github.io/tags/printer/"/>
+    
   </entry>
   
   <entry>
@@ -43,7 +45,7 @@
     <link href="http://54laowang.github.io/2018/08/23/print-serial/"/>
     <id>http://54laowang.github.io/2018/08/23/print-serial/</id>
     <published>2018-08-23T11:33:11.000Z</published>
-    <updated>2018-08-28T14:59:49.647Z</updated>
+    <updated>2018-08-28T15:52:02.583Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Ubuntu下调试串口热敏打印机（一）"><a href="#Ubuntu下调试串口热敏打印机（一）" class="headerlink" title="Ubuntu下调试串口热敏打印机（一）"></a>Ubuntu下调试串口热敏打印机（一）</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p><p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p><p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p><p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p><p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p><p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/ttyS0</span><br></pre></td></tr></table></figure></p><p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p><p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p><p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p><p>打开终端安装<strong>pip3</strong>,然后通过<strong>pip3</strong>安装<strong>python-escpos</strong></p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">pip3 install python-escpos</span><br></pre></td></tr></table></figure><p>确认安装完成后我们就可以做一个简单的打印DEMO了<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *</span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)</span><br><span class="line">p.text(<span class="string">"Hello World\n\n\n"</span>)</span><br><span class="line">p.qr(<span class="string">"http://www.winpos.com.cn"</span>)</span><br><span class="line">p.cut( )</span><br></pre></td></tr></table></figure></p><p>保存文件为<strong>printdemo.py</strong><br>执行<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 printdemo.py</span><br></pre></td></tr></table></figure></p><p>此时打印机就会打出一张带二维码的小票，并切纸，测试OK。</p><p>现在这个demo还有点小问题，因为不能输出中文，所以后续还需要再完善。</p>]]></content>
     
@@ -56,6 +58,8 @@
     
     </summary>
     
+    
+      <category term="printer" scheme="http://54laowang.github.io/tags/printer/"/>
     
   </entry>
   
