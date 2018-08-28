@@ -5,18 +5,19 @@
   
 
   
-  <title>老王博客</title>
+  <title>pyserial2 | 老王博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="老王在 Github 上的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="老王博客">
-<meta property="og:url" content="http://54laowang.github.io/index.html">
+  <meta name="description" content="#Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: ####GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。 ####BIG5编码：台湾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyserial2">
+<meta property="og:url" content="http://54laowang.github.io/2018/08/28/pyserial2/index.html">
 <meta property="og:site_name" content="老王博客">
-<meta property="og:description" content="老王在 Github 上的个人博客">
+<meta property="og:description" content="#Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: ####GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。 ####BIG5编码：台湾">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-28T15:40:02.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="老王博客">
-<meta name="twitter:description" content="老王在 Github 上的个人博客">
+<meta name="twitter:title" content="pyserial2">
+<meta name="twitter:description" content="#Ubuntu下调试串口热敏打印机（二）上次使用python里的escpos模块来写了一个简单的DEMO，但是打印中文乱码。后续又看了下相关文档和例程，发现是汉字编码问题。目前常见的汉字字符集编码大致为以下几种: ####GB2312编码：1981年5月1日发布的简体中文汉字编码国家标准。GB2312对汉字采用双字节编码，收录7445个图形字符，其中包括6763个汉字。 ####BIG5编码：台湾">
   
     <link rel="alternate" href="/atom.xml" title="老王博客" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-pyserial2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-pyserial2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/28/pyserial2/" class="article-date">
   <time datetime="2018-08-28T14:57:02.000Z" itemprop="datePublished">2018-08-28</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/28/pyserial2/">pyserial2</a>
+    <h1 class="article-title" itemprop="name">
+      pyserial2
     </h1>
   
 
@@ -105,62 +104,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-print-serial" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/23/print-serial/" class="article-date">
-  <time datetime="2018-08-23T11:33:11.000Z" itemprop="datePublished">2018-08-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/23/print-serial/">Print Serial</a>
-    </h1>
+    <a href="/2018/08/23/print-serial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Print Serial</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Ubuntu下调试串口热敏打印机（一）"><a href="#Ubuntu下调试串口热敏打印机（一）" class="headerlink" title="Ubuntu下调试串口热敏打印机（一）"></a>Ubuntu下调试串口热敏打印机（一）</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
-<p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p>
-<p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p>
-<p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p>
-<p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p>
-<p>打开终端安装<strong>pip3</strong>,然后通过<strong>pip3</strong>安装<strong>python-escpos</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">pip3 install python-escpos</span><br></pre></td></tr></table></figure>
-<p>确认安装完成后我们就可以做一个简单的打印DEMO了<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *</span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)</span><br><span class="line">p.text(<span class="string">"Hello World\n\n\n"</span>)</span><br><span class="line">p.qr(<span class="string">"http://www.winpos.com.cn"</span>)</span><br><span class="line">p.cut( )</span><br></pre></td></tr></table></figure></p>
-<p>保存文件为<strong>printdemo.py</strong><br>执行<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 printdemo.py</span><br></pre></td></tr></table></figure></p>
-<p>此时打印机就会打出一张带二维码的小票，并切纸，测试OK。</p>
-<p>现在这个demo还有点小问题，因为不能输出中文，所以后续还需要再完善。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://54laowang.github.io/2018/08/23/print-serial/" data-id="cjldvlwz70001e8tx2xy2n74q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         

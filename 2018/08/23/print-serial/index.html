@@ -7,17 +7,17 @@
   
   <title>Print Serial | 老王博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ubuntu下调试串口热敏打印机系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，">
+  <meta name="description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Print Serial">
 <meta property="og:url" content="http://54laowang.github.io/2018/08/23/print-serial/index.html">
 <meta property="og:site_name" content="老王博客">
-<meta property="og:description" content="Ubuntu下调试串口热敏打印机系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，">
+<meta property="og:description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T11:56:16.325Z">
+<meta property="og:updated_time" content="2018-08-28T14:59:49.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Print Serial">
-<meta name="twitter:description" content="Ubuntu下调试串口热敏打印机系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，">
+<meta name="twitter:description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
   
     <link rel="alternate" href="/atom.xml" title="老王博客" type="application/atom+xml">
   
@@ -86,12 +86,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Ubuntu下调试串口热敏打印机"><a href="#Ubuntu下调试串口热敏打印机" class="headerlink" title="Ubuntu下调试串口热敏打印机"></a>Ubuntu下调试串口热敏打印机</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Ubuntu下调试串口热敏打印机（一）"><a href="#Ubuntu下调试串口热敏打印机（一）" class="headerlink" title="Ubuntu下调试串口热敏打印机（一）"></a>Ubuntu下调试串口热敏打印机（一）</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
 <p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p>
 <p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p>
 <p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p>
 <p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/usb/ttyS0</span><br></pre></td></tr></table></figure></p>
+<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/ttyS0</span><br></pre></td></tr></table></figure></p>
 <p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p>
 <p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p>
 <p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p>
@@ -105,13 +105,27 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://54laowang.github.io/2018/08/23/print-serial/" data-id="cjl6igels0000gktx3ji1i1dr" class="article-share-link">Share</a>
+      <a data-url="http://54laowang.github.io/2018/08/23/print-serial/" data-id="cjldvlwz70001e8tx2xy2n74q" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2018/08/28/pyserial2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          pyserial2
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -142,6 +156,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/28/pyserial2/">pyserial2</a>
+          </li>
         
           <li>
             <a href="/2018/08/23/print-serial/">Print Serial</a>
