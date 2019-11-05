@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="printer," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
-<meta name="keywords" content="printer">
+<meta name="description" content="老王在 Github 上的个人博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Print Serial">
-<meta property="og:url" content="http://54laowang.github.io/2018/08/23/print-serial/index.html">
+<meta property="og:title" content="operation">
+<meta property="og:url" content="http://54laowang.github.io/2019/11/05/operation/index.html">
 <meta property="og:site_name" content="老王博客">
-<meta property="og:description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
+<meta property="og:description" content="老王在 Github 上的个人博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T15:52:02.583Z">
+<meta property="og:updated_time" content="2019-11-05T11:52:06.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Print Serial">
-<meta name="twitter:description" content="Ubuntu下调试串口热敏打印机（一）系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。首先我们可以使用stty查看串口参数stty -F /dev/ttyS0 -a 我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符">
+<meta name="twitter:title" content="operation">
+<meta name="twitter:description" content="老王在 Github 上的个人博客">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://54laowang.github.io/2018/08/23/print-serial/"/>
+  <link rel="canonical" href="http://54laowang.github.io/2019/11/05/operation/"/>
 
 
 
 
 
-  <title>Print Serial | 老王博客</title>
+  <title>operation | 老王博客</title>
   
 
 
@@ -235,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://54laowang.github.io/2018/08/23/print-serial/">
+    <link itemprop="mainEntityOfPage" href="http://54laowang.github.io/2019/11/05/operation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="laowang">
@@ -252,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Print Serial</h1>
+          <h1 class="post-title" itemprop="name headline">operation</h1>
         
 
         <div class="post-meta">
@@ -264,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T19:33:11+08:00">
-                2018-08-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-05T19:52:06+08:00">
+                2019-11-05
               </time>
             
 
@@ -302,22 +301,7 @@
       
 
       
-        <h1 id="Ubuntu下调试串口热敏打印机（一）"><a href="#Ubuntu下调试串口热敏打印机（一）" class="headerlink" title="Ubuntu下调试串口热敏打印机（一）"></a>Ubuntu下调试串口热敏打印机（一）</h1><p>系统环境：Ubuntu16.04  ，我们调试的是一台普通串口打印机，由于Ubuntu下面驱动支持不友好，所以我们选择先测试下串口通信是否正常。<br>首先我们可以使用<strong>stty</strong>查看串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 -a</span><br></pre></td></tr></table></figure></p>
-<p>我们连接测试的是串口1，所以使用该命令查看串口1当前的参数，包括波特率、数据位等。由于我们打印机默认波特率为19200，所以如果波特率不符的话，我们还可以通过<strong>stty</strong>修改串口参数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">stty -F /dev/ttyS0 ispeed 19200</span><br></pre></td></tr></table></figure></p>
-<p>查看串口是否可用，我们也可以直接对串口发送数据，比如<strong>COM1</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo ceshi123 &gt;/dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>查看串口名称使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l | /dev/ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>一般情况下串口名称全部在dev下面<br>查看串口设备命令可使用<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dmesg | grep ttyS*</span><br></pre></td></tr></table></figure></p>
-<p>我们直接对串口发送中文后，打印机输出乱码，一般是字符编码问题<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;测试&quot; | iconv -f UTF-8 -t GB2312 &gt; /dev/ttyS0</span><br></pre></td></tr></table></figure></p>
-<p>使用iconv函数转换字符编码后，测试打印机正常输出中文。</p>
-<p>现在打印机可以正常输出内容了，接下来我们测试其它功能，现在打印机基本都兼容爱普生的Escpos指令，为了更简单迅速做测试，我们此处使用Python来写一个简单的DEMO，在写之前，我们需要先配置下相应的开发环境。</p>
-<p>Ubuntu系统默认内置Python2和Python3，此处我们使用Python3</p>
-<p>打开终端安装<strong>pip3</strong>,然后通过<strong>pip3</strong>安装<strong>python-escpos</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br><span class="line">pip3 install python-escpos</span><br></pre></td></tr></table></figure>
-<p>确认安装完成后我们就可以做一个简单的打印DEMO了<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> escpos <span class="keyword">import</span> *</span><br><span class="line">p = printer.Serial(<span class="string">"/dev/ttyS0"</span>)</span><br><span class="line">p.text(<span class="string">"Hello World\n\n\n"</span>)</span><br><span class="line">p.qr(<span class="string">"http://www.winpos.com.cn"</span>)</span><br><span class="line">p.cut( )</span><br></pre></td></tr></table></figure></p>
-<p>保存文件为<strong>printdemo.py</strong><br>执行<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 printdemo.py</span><br></pre></td></tr></table></figure></p>
-<p>此时打印机就会打出一张带二维码的小票，并切纸，测试OK。</p>
-<p>现在这个demo还有点小问题，因为不能输出中文，所以后续还需要再完善。</p>
-
+        
       
     </div>
     
@@ -332,12 +316,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/printer/" rel="tag"># printer</a>
-          
-        </div>
-      
 
       
       
@@ -347,15 +325,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/28/print-serial2/" rel="next" title="Print Serial-2">
+                <i class="fa fa-chevron-left"></i> Print Serial-2
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/28/print-serial2/" rel="prev" title="Print Serial-2">
-                Print Serial-2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -407,17 +385,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -475,22 +444,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu下调试串口热敏打印机（一）"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu下调试串口热敏打印机（一）</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
